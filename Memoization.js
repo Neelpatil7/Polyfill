@@ -3,11 +3,11 @@ Function.prototype.memorize= function (fn,limit){
     let cache={};
     let keys=[];
 
-    return function(num) {
+    return function(...num) {
         if(cache[num] !== undefined){
             return cache[num];
         }
-        let result=fn(num);
+        let result=fn(...num);
         cache[num]=result;
         keys.push(num);
 
@@ -18,3 +18,9 @@ Function.prototype.memorize= function (fn,limit){
         return result;
     }
 }
+function add(a,b){
+    return a+b;
+}
+let mem=memorize(add);
+console.log(mem(5,5))
+
